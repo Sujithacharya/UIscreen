@@ -1,0 +1,59 @@
+<mvc:View
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns:u="sap.ui.unified"
+    xmlns:ui="sap.ui"
+    xmlns:l="sap.ui.layout"
+    displayBlock="true"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:sfb="sap.ui.comp.smartfilterbar"
+    xmlns:customfb="coreproductfinder.utils"
+    xmlns:st="sap.ui.comp.smarttable"
+    xmlns:smartField="sap.ui.comp.smartfield"
+    xmlns:smartMultiInput="sap.ui.comp.smartmultiinput"
+  
+    >
+	<Page id="_IDGenPage1" title="{i18n>detailPageTitle}">
+			<sfb:SmartFilterBar
+					id="smartFilterBar"
+					entitySet="MainEntitySet"
+					enableBasicSearch="true"
+					basicSearchFieldName="CompanyCode"
+					persistencyKey="UniqueAndStablePersistencyKey">
+					<sfb:customData>
+						<core:CustomData key="defaultFilterBarExpanded" value='{"CompanyCode": "true"}'/>
+						<core:CustomData key="defaultShowAllFilters" value='{"CompanyCode": "true"}'/>
+					</sfb:customData>     	
+			</sfb:SmartFilterBar>
+            <st:SmartTable
+                id="idSmartTable"
+                entitySet="ObjectHeader"
+                tableType="ResponsiveTable"
+                useExportToExcel="true"
+                beforeExport="onBeforeExport"
+                useVariantManagement="true"
+                useTablePersonalisation="true"
+                header="Line Items"
+                showRowCount="true"
+                persistencyKey="SmartTableAnalytical_Explored"
+                demandPopin="true"
+                class="sapUiResponsiveContentPadding"
+                beforeRebindTable="onBeforeRebindTable"
+               >
+                <st:customToolbar>
+                    <OverflowToolbar id="idOverflowTollBar" design="Transparent">
+                        <ToolbarSpacer id="idToolbarSpacer" />
+                        <Button id="idBtnCompare" text="Compare" press="onCompareBtnPress" visible="false" />
+                        <Button id="idBtnBulkUpdate" text="Bulk Update" press="onBulkUpdateBtnPress" visible="false" />
+                    </OverflowToolbar>
+                </st:customToolbar>
+                <Table id="idTable" mode="MultiSelect" selectionChange="onSelection" growingThreshold="100" growing="true" growingScrollToLoad="true" itemPress="onItemPress">
+                    <columns />
+                    <items>
+                        <ColumnListItem id="idColumnListItem" type="Navigation" />
+                    </items>
+                </Table>
+            </st:SmartTable>
+	</Page>
+</mvc:View>

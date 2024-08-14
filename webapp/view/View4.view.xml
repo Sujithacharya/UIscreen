@@ -1,0 +1,195 @@
+<mvc:View controllerName="project1.controller.View4"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.uxap"
+	xmlns:m="sap.m"
+	xmlns:core="sap.ui.core"
+    xmlns:table="sap.ui.table"
+     xmlns:upload="sap.m.upload"
+	xmlns:goals="sap.uxap.sample.SharedBlocks.goals"
+	xmlns:personal="sap.uxap.sample.SharedBlocks.personal"
+	xmlns:employment="sap.uxap.sample.SharedBlocks.employment"
+    >
+    <m:Page id="page" title="{i18n>title1}">
+        <m:content>
+        	<m:FlexBox
+				height="100px"
+				alignItems="Center"
+				justifyContent="Center">
+                 <m:Label class="sapUiSmallMarginEnd" design="Bold" text="Work Order :" labelFor="ID_PD" ></m:Label>
+				 <m:Input id="ID_PurchasingDocument" width="200px" showValueHelp="true" valueHelpRequest="onValueHelpPress"></m:Input>
+			</m:FlexBox>
+            <ObjectPageLayout id="ObjectPageLayout"
+		showTitleInHeaderContent="true"
+		upperCaseAnchorBar="false"
+        visible="false"
+        >
+		<headerTitle>
+			<ObjectPageDynamicHeaderTitle>
+				
+
+				
+			</ObjectPageDynamicHeaderTitle>
+		</headerTitle>
+
+
+			
+		<sections>
+			<ObjectPageSection titleUppercase="false" id="ID_Info" title="General Information">
+				<subSections>
+					<ObjectPageSubSection id="goalsSectionSS1" titleUppercase="false">
+						<blocks>
+							<m:Text text="General Information"></m:Text>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+
+			<ObjectPageSection titleUppercase="false" id="ID_Items" title="Items">
+				<subSections>
+					<ObjectPageSubSection id="personalSectionSS1" title="Items" titleUppercase="false">
+						<blocks>
+                        	<m:Table id="idProductsTable"
+                                inset="false"
+                                items="{
+                                    path: 'oTableData>/'
+                                   
+                                }" mode="MultiSelect" >
+                                <m:headerToolbar>
+                                    <m:OverflowToolbar>
+                                        <m:content>
+                                            <m:ToolbarSpacer />
+                                            <m:SearchField width="200px"/>
+                                            <m:Button
+                                                tooltip="Sort"
+                                                icon="sap-icon://sort"
+                                                press="handleSortButtonPressed"/>
+                                            <m:Button icon="sap-icon://action-settings"></m:Button>
+                                        </m:content>
+                                    </m:OverflowToolbar>
+                                </m:headerToolbar>
+                                <m:columns>
+                                    <m:Column
+                                        width="auto">
+                                        <m:Text text="Material" />
+                                    </m:Column>
+                                    <m:Column>
+                                        <m:Text text="Open Quantity" />
+                                    </m:Column>
+                                    <m:Column>
+                                        <m:Text text="Distribution" />
+                                    </m:Column>
+                                    <m:Column>
+                                        <m:Text text="Plant" />
+                                    </m:Column>
+                                </m:columns>
+                                <m:items>
+                                    <m:ColumnListItem vAlign="Middle" type="Navigation">
+                                        <m:cells>
+                                           <m:VBox >
+                                               <m:Link text="{oTableData>Material}"></m:Link>
+                                               <m:Text text="{oTableData>MaterialNumber}"></m:Text>
+                                                <m:Label text="Delivered"/>
+                                               <m:HBox >
+                                                    <m:Input value="{oTableData>MDelivered}"></m:Input>
+                                                    <m:Input value="{oTableData>MDeliveredunit}" showValueHelp="true"></m:Input>
+                                               </m:HBox>
+                                               <m:Label text="Storage location :"></m:Label>
+                                               <m:Input value="{oTableData>StorageLocation}" showValueHelp="true"></m:Input>
+                                               <m:Label text="Stock Type :"></m:Label>
+                                               <m:ComboBox selectedKey="{oTableData>Plant}">
+                                                  <core:Item key="Roosevelt Little R....." text="Roosevelt Little R....." ></core:Item>
+                                               </m:ComboBox>
+                                            </m:VBox>
+                                            <m:Text
+                                               text="{oTableData>Quantity}" />
+                                            <m:Button icon="sap-icon://add"></m:Button>
+                                            <m:ComboBox  selectedKey="{oTableData>Plant}">
+                                              <core:Item key="Roosevelt Little R....." text="Roosevelt Little R....." ></core:Item>
+                                            </m:ComboBox>
+                                              <m:Label text="Batch :"></m:Label>
+                                               <m:Input width="30%" ></m:Input>
+                                        </m:cells>
+                                    </m:ColumnListItem>
+                                </m:items>
+                            </m:Table>
+						    <table:Table visible="false"
+                                rows="{RowData>/}"
+                                selectionMode="MultiToggle"
+                                paste="onPaste"
+                                ariaLabelledBy="title">
+                                <table:extension>
+                                    <m:OverflowToolbar style="Clear">
+                                        <m:Title id="title" text="Products"/>
+                                    </m:OverflowToolbar>
+                                </table:extension>
+                                <table:columns>
+                                    <table:Column width="auto">
+                                        <m:Label text="Material" />
+                                        <table:template>
+                                           
+                                            <m:VBox >
+                                               <m:Link ></m:Link>
+                                               <m:Text ></m:Text>
+                                                <m:Label text="Delivered"/>
+                                               <m:HBox >
+                                                    <m:Input ></m:Input>
+                                                    <m:Input showValueHelp="true"></m:Input>
+                                               </m:HBox>
+                                               <m:Label text="Storage location :"></m:Label>
+                                               <m:Input showValueHelp="true"></m:Input>
+                                               <m:Label text="Stock Type :"></m:Label>
+                                               <m:ComboBox ></m:ComboBox>
+                                            </m:VBox>
+                                        </table:template>
+                                    </table:Column>
+                                    <table:Column width="auto">
+                                        <m:Label text="Open Quantity" />
+                                        <table:template>
+                                            <m:Text text="{ProductId}"/>
+                                        </table:template>
+                                    </table:Column>
+                                    <table:Column width="auto">
+                                        <m:Label text="Distribution" />
+                                        <table:template>
+                                            <m:Button text="Plus" />
+                                        </table:template>
+                                    </table:Column>
+                                    <table:Column width="auto">
+                                        <m:Label text="Plant" />
+                                        <table:template>
+                                           <m:ComboBox ></m:ComboBox>
+                                        </table:template>
+                                    </table:Column>
+                                </table:columns>
+                            </table:Table>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+
+			<ObjectPageSection titleUppercase="false" id="ID_Attachment" title="Attachment">
+				<subSections>
+					<ObjectPageSubSection id="employmentSectionSS1" title="Attachment" titleUppercase="false">
+						<blocks>
+							  <upload:UploadSet id="idUploadSet" instantUpload="true" showIcons="true" uploadEnabled="true" terminationEnabled="true" fileTypes="doc,pdf,xls,ppt,pptx,xlsx,docx,txt,jpg,jpeg,png" beforeUploadStarts="onBeforeUploadStarts" uploadCompleted="onUploadCompleted" multiple="true" 
+                                beforeItemAdded="onBeforeItemAdded" afterItemRemoved="onAfterItemRemoved" mode="None" mediaTypes="application/msword,application/pdf,application/vnd.ms-excel,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/plain,image/jpg,image/jpeg,image/png"
+                                fileNameLengthExceeded="onFileNameLengthExceeded" mediaTypeMismatch="onMediaTypeMismatch" fileSizeExceeded="onFileSizeExceeded"
+                                fileTypeMismatch="onFileTypeMismatch">
+                                    <upload:toolbar>
+                                        <m:OverflowToolbar>
+                                            <m:Text id="idAttachmentText" text="Attachments"/>
+                                            <m:ToolbarSpacer/>
+                                            <m:Button id="idAddLinkButton" text="Add Link" press="onAddLinkBtnPress"/>
+                                            <!-- <Button id="idDownloadSelectedButton" text="Download selected" press="onDownloadBtnPress"/> -->
+                                        </m:OverflowToolbar>
+                                    </upload:toolbar>
+                                </upload:UploadSet>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+		</sections>
+	 </ObjectPageLayout>
+        </m:content>
+    </m:Page>
+</mvc:View>

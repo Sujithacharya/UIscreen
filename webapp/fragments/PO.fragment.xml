@@ -1,0 +1,35 @@
+<core:FragmentDefinition
+	xmlns="sap.ui.comp.valuehelpdialog"
+	xmlns:m="sap.m"
+	xmlns:fb="sap.ui.comp.filterbar"
+	xmlns:core="sap.ui.core"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:mvc="sap.ui.core.mvc">
+	<ValueHelpDialog
+		title="Select Purchasing Document"
+		ok="onValueHelpOkPress"
+		cancel=".onValueHelpCancelPress"
+		afterClose=".onValueHelpAfterClose"
+	
+		key="ProductCode"
+		descriptionKey="ProductName">
+		<filterBar>
+			<fb:FilterBar advancedMode="true" search=".onFilterBarWhitespacesSearch" isRunningInValueHelpDialog="true">
+				<fb:filterGroupItems>
+					<fb:FilterGroupItem
+						groupName="__$INTERNAL$"
+						name="ProductCode"
+						label="Purchasing Document Category"
+						visibleInFilterBar="true">
+						<fb:control>
+						 <m:ComboBox selectedKey="al">
+                            	<core:Item key="al" text="All Categories" />
+                         </m:ComboBox>
+						</fb:control>
+					</fb:FilterGroupItem>
+					
+				</fb:filterGroupItems>
+			</fb:FilterBar>
+		</filterBar>
+	</ValueHelpDialog>
+</core:FragmentDefinition>
